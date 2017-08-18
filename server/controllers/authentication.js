@@ -11,7 +11,7 @@ const tokenForUser = user => {
 
 exports.signin = function (req, res, next) {
   // User is auth, just need to give a token
-
+  res.send({ token: tokenForUser(req.user) })
 }
 
 exports.signup = function (req, res, next) {

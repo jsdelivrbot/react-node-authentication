@@ -12,20 +12,20 @@ const localOptions = {
 
 // Create local strategy
 const localLogin = new LocalStrategy(localOptions,
-  (email, password, done) => {
+(email, password, done) => {
     // verify email / pass, call done
-    User.findOne({ email }).then(user => {
-      if (!user) return done(null, false)
+  User.findOne({ email }).then(user => {
+    if (!user) return done(null, false)
 
       // compare passwords
-      user.comparePassword(password, (err, isMatch) => {
-        if (err) return done(err)
-        if (!isMatch) return done(null, false)
+    user.comparePassword(password, (err, isMatch) => {
+      if (err) return done(err)
+      if (!isMatch) return done(null, false)
 
-        return done(null, user)
-      })
-    }).catch(err => done(err, false))
-  })
+      return done(null, user)
+    })
+  }).catch(err => done(err, false))
+})
 
 // Setup options for JWT Strategy
 const jwtOptions = {
