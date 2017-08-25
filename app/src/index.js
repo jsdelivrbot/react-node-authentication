@@ -10,6 +10,7 @@ import App from './components/app'
 import Signin from './components/auth/signin'
 import Signout from './components/auth/signout'
 import Signup from './components/auth/signup'
+import Feature from './components/feature'
 import reducers from './reducers'
 
 require('../style/style.scss')
@@ -26,6 +27,7 @@ ReactDOM.render(
           <Route exact path='/signin' component={Signin} />
           <Route exact path='/signout' component={Signout} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path='/feature' component={Feature} />
         </Switch>
       </App>
     </HashRouter>

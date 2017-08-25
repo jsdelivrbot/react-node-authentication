@@ -17,10 +17,26 @@ export function signinUser ({ email, password }, history) {
         // - redirect
         history.push('/feature')
       })
-      .catch(err => {
+      .catch(({response}) => {
         // if invalid request
         // - show an error to user
         dispatch(authError('Bad login info'))
+      })
+  }
+}
+
+export function signupUser ({email, password}, history) {
+  return function (dispatch) {
+    axios.post(`${ROOT_URL}/signup`, { email, password })
+      .then(res => {
+        dispatch({ type: AUTH_USER })
+
+        window.localStorage.setItem('token', res.data.token)
+
+        history.push('/feature')
+      })
+      .catch((err) => {
+        dispatch(authError(err.response.data.error || err.message))
       })
   }
 }
