@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
-    static contextTypes = {
-      router: React.PropTypes.object
+    static PropTypes = {
+      router: PropTypes.object
     }
 
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.context.router.push('/');
+        this.props.history.push('/');
       }
     }
 
     componentWillUpdate(nextProps) {
       if (!nextProps.authenticated) {
-        this.context.router.push('/');
+        this.props.history.push('/');
       }
     }
 
@@ -25,7 +26,7 @@ export default function(ComposedComponent) {
   }
 
   function mapStateToProps(state) {
-    return { authenticated: state.authenticated };
+    return { authenticated: state.auth.authenticated };
   }
 
   return connect(mapStateToProps)(Authentication);

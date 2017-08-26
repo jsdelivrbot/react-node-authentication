@@ -37,6 +37,7 @@
     "css-loader": "^0.28.1",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "5.0.4",
