@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../actions/types'
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from '../actions/types'
 
 const ROOT_URL = '//localhost:8000'
 
@@ -51,5 +51,23 @@ export function authError (error) {
   return {
     type: AUTH_ERROR,
     payload: error
+  }
+}
+
+export function fetchMessage () {
+  return dispatch => {
+    axios.get(ROOT_URL, {
+      headers: { authorization: window.localStorage.getItem('token') }
+    })
+      .then(res => {
+        console.log(res)
+        dispatch({
+          type: FETCH_MESSAGE,
+          payload: res.data.message
+        })
+      })
+      .catch((err) => {
+        console.log(err.response.data.error || err.message)
+      })
   }
 }

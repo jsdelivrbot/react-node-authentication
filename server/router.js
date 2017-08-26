@@ -8,7 +8,7 @@ const requireSignin = passport.authenticate('local', { session: false })
 
 module.exports = function (app) {
   app.get('/', requireAuth, (req, res) => {
-    res.send({protected: true})
+    res.send({message: 'Authenticated request success! You are authenticated!'})
   })
   app.post('/signin', requireSignin, Authentication.signin)
   app.post('/signup', Authentication.signup)
